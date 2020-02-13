@@ -6,36 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
-    <title>Projetão monstro</title>
+    <title>Crud Usuário</title>
 </head>
 
 <body>
     <?php
-    include_once(__DIR__ . DIRECTORY_SEPARATOR . "header.php");
-
+        include_once(__DIR__ . DIRECTORY_SEPARATOR . "header.php");
+        require_once(__DIR__ . DIRECTORY_SEPARATOR . "global.php");
+        
     ?>
 
     <div class="container mt-5">
 
-        <h1>Cadastro,
-            
+        <h1>Cadastro, edição, remoção e consulta de usuários
+
         </h1>
         <form class="needs-validation" novalidate>
             <div class="form-row">
                 <div class="col-md-6 mb-3">
-                    <label for="validationTooltip01">Email</label>
-                    <input type="text" class="form-control" id="validationTooltip01" placeholder="Nome" value="Mark" required>
+                    <label for="txtNome">Nome do usuário</label>
+                    <input type="text" class="form-control" name="txtNome" id="txtNome" placeholder="Digite o seu nome" required>
                     <div class="valid-tooltip">
                         Tudo certo!
                     </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="validationTooltipUsername">Usuário</label>
+                    <label for="txtEmail">Email do usuário</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                            <span class="input-group-text" id="spaEmail">@</span>
                         </div>
-                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Usuário" aria-describedby="validationTooltipUsernamePrepend" required>
+                        <input type="text" class="form-control" id="txtEmail" placeholder="Digite o seu email" aria-describedby="validationTooltipUsernamePrepend" required>
                         <div class="invalid-tooltip">
                             Por favor, escolha um usuário válido e único.
                         </div>
@@ -44,28 +45,31 @@
             </div>
             <div class="form-row">
                 <div class="col-md-6 mb-3">
-                    <label for="validationTooltip03">Cidade</label>
-                    <input type="text" class="form-control" id="validationTooltip03" placeholder="Cidade" required>
-                    <div class="invalid-tooltip">
-                        Por favor, informe uma cidade válida.
+                    <div class="form-group">
+                        <label for="txtNivelAcesso">Nível de acesso</label>
+                        <select class="form-control" id="txtNivelAcesso" name="txtNivelAcesso">
+                            <?php
+
+                            ?>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="validationTooltip04">Estado</label>
-                    <input type="text" class="form-control" id="validationTooltip04" placeholder="Estado" required>
+                    <label for="txtSenha">Senha</label>
+                    <input type="text" class="form-control" id="txtSenha" name="txtSenha" placeholder="Digite uma senha de pelo menos 8 caracteres" required>
                     <div class="invalid-tooltip">
-                        Por favor, informe um estado válido.
+                        Tudo certo!
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <label for="validationTooltip05">CEP</label>
-                    <input type="text" class="form-control" id="validationTooltip05" placeholder="CEP" required>
+                    <label for="validationTooltip05">Repita a senha</label>
+                    <input type="text" class="form-control" id="txtSenha" name="txtSenha" placeholder="Digite a senha novamente" required>
                     <div class="invalid-tooltip">
-                        Por favor, informe um CEP válido.
+                        Digite uma Senha válida
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Enviar</button>
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
         </form>
 
 
