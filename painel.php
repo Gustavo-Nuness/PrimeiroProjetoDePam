@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
     <title>Projetão monstro</title>
 </head>
-<body>    
+<body>
+    <?php require(__DIR__.DIRECTORY_SEPARATOR."controller".DIRECTORY_SEPARATOR."innerVerify.php")?>    
     <?php 
         include_once(__DIR__.DIRECTORY_SEPARATOR."header.php");
     

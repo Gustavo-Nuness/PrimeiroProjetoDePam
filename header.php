@@ -12,7 +12,7 @@
         <a class="nav-link" href="usuario.php">Usuário</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Sair</a>
+        <a class="nav-link" href="controller/logout.php">Sair</a>
       </li>
     </ul>
   </div>
