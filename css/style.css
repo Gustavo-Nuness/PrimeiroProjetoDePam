@@ -20,3 +20,33 @@
 
 }
 
+.mt-6 {
+
+    margin-top:4rem ;
+}
+
+#table td,th {
+
+    vertical-align: middle !important;
+    text-align: center !important;
+
+}
+
+#table i {
+
+    color: black;
+}
+#table a {
+
+    margin-right: 10px;
+}
+
+.icon-md {
+    font-size: 50px;
+    color: rgba(0, 0, 0, .2);
+    
+}
+
+table input[type=image] {
+    height: 20px;
+}
