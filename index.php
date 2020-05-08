@@ -20,15 +20,15 @@
         <div class="container full-height d-flex">
             <div class="row align-items-center w-100 p-3">
                 <div class="col-md-6 mx-auto">
-                    <form action="painel.php" method="post" class="bg-white py-4 px-4">
+                    <form action="controller/verificacao.php" method="post" class="bg-white py-4 px-4">
                         <i class="far fa-user d-block mx-auto text-center icon-md"></i>
                         <div class="form-group mx-sm-5 mb-2">
                             <label for="loginTxt">Usuário</label>
-                            <input type="text" class="form-control w-100 p-3" id="loginTxt" placeholder="Digite seu usuário">
+                            <input type="text" class="form-control w-100 p-3" name="loginTxt" id="loginTxt" placeholder="Digite seu usuário">
                         </div>
                         <div class="form-group mx-sm-5 mb-2">
                             <label for="senhaTxt">Senha</label>
-                            <input type="password" class="form-control w-100 p-3" id="senhaTxt" placeholder="Digite sua senha">
+                            <input type="password" class="form-control w-100 p-3" name="senhaTxt" id="senhaTxt" placeholder="Digite sua senha">
                             <br />
                             <input type="submit" class="btn btn-success btn-lg btn-block" value="Entrar" style="border-radius: 0;" />
 

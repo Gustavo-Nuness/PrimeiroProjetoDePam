@@ -17,9 +17,10 @@
 
 <body>
     <?php
-    include_once(__DIR__ . DIRECTORY_SEPARATOR . "header.php");
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . "global.php");
-
+        require(__DIR__.DIRECTORY_SEPARATOR."controller".DIRECTORY_SEPARATOR."innerVerify.php");    
+        include_once(__DIR__ . DIRECTORY_SEPARATOR . "header.php");
+        require_once(__DIR__ . DIRECTORY_SEPARATOR . "global.php");
+        
     ?>
 
     <?php
