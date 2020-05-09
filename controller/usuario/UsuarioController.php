@@ -60,6 +60,12 @@
             $userDao = new UsuarioDAO();
             return $userDao->consultarById($id);
         }
+
+        public function verifyUserExistenceByEmailAndPassword($email, $password){
+            $userDao = new UsuarioDAO();
+            return $userDao->verifyUserExistenceByEmailAndPassword($email, $password);
+
+        }
     }
 ?>
 

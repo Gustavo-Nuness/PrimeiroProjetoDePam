@@ -26,7 +26,7 @@
     <?php
     $usuario = new Usuario();
 
-    if (isset($_GET["idUsuarioEditar"]) && !empty($_GET['idUsuario'])) {
+    if (isset($_GET["idUsuarioEditar"]) && !empty($_GET['idUsuarioEditar'])) {
 
         $usuario->setIdUsuario($_GET["idUsuarioEditar"]);
         $userController = new  UsuarioController();
@@ -399,7 +399,7 @@
 
 
 
-        $(document).on("submit", "form-edit-user", function(e) {
+        $(document).on("submit", "#form-edit-user", function(e) {
 
             console.log("Chamou o evento submit");
 
@@ -453,6 +453,10 @@
 
             });
         });
+
+
+
+        
     </script>
 
 </body>

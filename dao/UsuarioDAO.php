@@ -157,7 +157,7 @@ class UsuarioDAO
 
             if ( count($result) > 0)  {
 
-                foreach ($result as  $r) {
+                foreach ($result as $r) {
 
                     $idRetornado = $r['idUsuario'];
     
@@ -180,6 +180,51 @@ class UsuarioDAO
 
                      
         }
+    }
+
+
+    public function verifyUserExistenceByEmailAndPassword($email, $password){
+
+        $conn = Connection::getConnection();
+
+        $sql = "SELECT idUsuario, nomeUsuario, emailUsuario, senhaUsuario, tbnivelacesso.idNivel, descricaoNivel
+                FROM tbusuario 
+                INNER JOIN tbnivelacesso
+                ON tbusuario.idNivel = tbnivelacesso.idNivel
+                WHERE emailUsuario = ? AND senhaUsuario = ?";
+
+        $pstm = $conn->prepare($sql);
+
+        $pstm->bindValue(1, $email);
+        $pstm->bindValue(2, $password);
+
+        $pstm->execute();
+
+        $result = $pstm->fetchAll();
+
+        if ( count($result) > 0) {
+
+             $user = new Usuario();     
+
+            foreach($result as $r){
+
+                $user->setIdUsuario($r['idUsuario']);
+                $user->setNomeUsuario($r['nomeUsuario']);
+                $user->setEmailUsuario($r['emailUsuario']);
+                $user->setSenhaUsuario($r['senhaUsuario']);
+                $user->getNivelAcessoUsuario()->setIdNivelAcesso($r['idNivel']);
+                $user->getNivelAcessoUsuario()->setDescricaoNivelAcesso($r['descricaoNivel']);
+
+            }
+
+            return $user;
+        }
+        else {
+
+            return null;
+
+        }
+
     }
 }
 

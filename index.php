@@ -40,6 +40,16 @@
     </main>
 
     <?php
+
+        session_start();
+        
+        if ( isset($_SESSION['logado']) && !empty($_SESSION['logado']) ) {
+
+            header("location: painel.php");
+        }
+    ?>
+
+    <?php
     include_once("imports/imports-js.php");
     ?>
 </body>
