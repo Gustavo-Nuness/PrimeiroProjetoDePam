@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">Painel <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="painel.php">Painel <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="usuario.php">Usuário</a>

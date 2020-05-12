@@ -17,10 +17,10 @@
 
 <body>
     <?php
-        require(__DIR__.DIRECTORY_SEPARATOR."controller".DIRECTORY_SEPARATOR."innerVerify.php");    
-        include_once(__DIR__ . DIRECTORY_SEPARATOR . "header.php");
-        require_once(__DIR__ . DIRECTORY_SEPARATOR . "global.php");
-        
+    require(__DIR__ . DIRECTORY_SEPARATOR . "controller" . DIRECTORY_SEPARATOR . "innerVerify.php");
+    include_once(__DIR__ . DIRECTORY_SEPARATOR . "header.php");
+    require_once(__DIR__ . DIRECTORY_SEPARATOR . "global.php");
+
     ?>
 
     <?php
@@ -49,7 +49,7 @@
         <h5 class="display-4 text-center">
             Crud do usuário
         </h5>
-        <form action="<?php echo (isset($_GET['idUsuarioEditar'])) ?  "controller/usuario/editarUsuario.php" :  "controller/usuario/inserirUsuario.php"; ?>" id="<?php (isset($_GET['idUsuario'])) ? "form-edit-user" : "form-insert-user"; ?>" method="post" class="needs-validation mt-5" novalidate>
+        <form action="<?php echo (isset($_GET['idUsuarioEditar'])) ?  "controller/usuario/editarUsuario.php" :  "controller/usuario/inserirUsuario.php"; ?>" id="<?php echo (isset($_GET['idUsuarioEditar'])) ? "form-edit-user" : "form-insert-user"; ?>" method="post" class="needs-validation mt-5" novalidate>
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="txtNome">Nome do usuário</label>
@@ -64,11 +64,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="spaEmail">@</span>
                         </div>
-                        <input type="text" class="form-control" id="txtEmail" name="txtEmail" placeholder="Digite o seu email" aria-describedby="validationTooltipUsernamePrepend" required value=
-                        "<?php
+                        <input type="text" class="form-control" id="txtEmail" name="txtEmail" placeholder="Digite o seu email" aria-describedby="validationTooltipUsernamePrepend" required value="<?php
 
-                            echo (isset($_GET['idUsuarioEditar'])) ? $usuario->getEmailUsuario() : "";
-                        ?>">
+                                                                                                                                                                                                    echo (isset($_GET['idUsuarioEditar'])) ? $usuario->getEmailUsuario() : "";
+                                                                                                                                                                                                    ?>">
 
                         <div class="invalid-tooltip">
                             Por favor, escolha um usuário válido e único.
@@ -101,10 +100,10 @@
                 </div>
                 <div class="col-md-3 mb-3">
                     <label for="txtSenha">Senha</label>
+
+                    <input type="password" class="form-control" id="txtSenha" name="txtSenha" placeholder="Digite uma senha de pelo menos 8 caracteres" required 
                     
-                    <input type="password" class="form-control" id="txtSenha" 
-                    name="txtSenha" placeholder="Digite uma senha de pelo menos 8 caracteres" 
-                    required value="<?php
+                    value="<?php
 
                         echo (isset($_GET['idUsuarioEditar'])) ? $usuario->getSenhaUsuario() : "";
 
@@ -128,7 +127,7 @@
 
 
                 <div class="col-md-3">
-                    <button type="submit" class="btn btn-success btn-block" type="submit"> <i class="far fa-paper-plane"></i> Cadastrar </button>
+                    <button type="submit" class="btn btn-success btn-block" type="submit"> <i class="far fa-paper-plane"></i> <?php echo (isset($_GET['idUsuarioEditar'])) ? "Editar" : "Cadastrar"; ?> </button>
                 </div>
 
                 <div class="col-md-3">
@@ -159,7 +158,7 @@
             <?php
             if (isset($_GET['idUsuarioEditar'])) {
 
-                echo "<input type='hidden' value='" . $usuario->getIdUsuario() . "' name='idUsuario'/>";
+                echo "<input type='hidden' value='" . $usuario->getIdUsuario() . "' name='idUsuario' id='hdIdUsuario'/>";
             }
 
 
@@ -201,19 +200,6 @@
 
             foreach ($listUsers as $user) {
 
-                // echo "<tr>" . "<td>" . $user['nomeUsuario'] . "</td>";
-                // echo "<td>" . $user['emailUsuario'] . "</td>";
-                // echo "<td>" . $user['descricaoNivel'] . "</td>";
-                // echo "<td class='d-flex justify-content-center' >" . "<form class = 'form-editar' action = 'controller/usuario/getUsuario.php' method='post'>"
-                //     . "<input type='image' src='img/edit.png'/>"
-                //     . "<input class='idUsuario' name='idUsuario' type ='hidden' value='" . $user['idUsuario'] . "' />"
-                //     . "</form>" .
-                //     '<form class="form-excluir" action="controller/usuario/excluirUsuario.php" method="post">'
-                //     . "<input type='image' src='img/bin.png' />" .
-                //     "<input class='idUsuario' name='idUsuario' type ='hidden' value='" . $user['idUsuario'] . "' />" .
-                //     '</form>'
-                //     . '</td>' . "</tr>";
-
 
                 echo "<tr>" . "<td>" . $user['nomeUsuario'] . "</td>";
                 echo "<td>" . $user['emailUsuario'] . "</td>";
@@ -223,7 +209,7 @@
                     . "<i class='fas fa-edit'></i>" .
                     "</a>" .
 
-                    "<a href='usuario.php?idUsuarioExcluir=" . $user['idUsuario'] . "'>"
+                    "<a href='controller/usuario/excluirUsuario.php?idUsuarioExcluir=" . $user['idUsuario'] . "'>"
                     . "<i class='fas fa-trash-alt'></i>" .
                     "</a>" .
 
@@ -265,6 +251,8 @@
 
             e.preventDefault();
 
+            const SUCESSO_AO_CADASTRAR_USUARIO = 1;
+
             $.ajax({
 
                 url: "controller/usuario/inserirUsuario.php",
@@ -276,7 +264,7 @@
                     "txtEmail": $("#txtEmail").val(),
                     "cboNivelAcesso": $("#cboNivelAcesso").val(),
                     "txtSenha": $("#txtSenha").val(),
-                    "txtConfirmarSenha": $("#txtConfirmarSennha").val()
+                    "txtConfirmarSenha": $("#txtConfirmarSenha").val()
 
 
                 },
@@ -285,7 +273,7 @@
 
                     var status = response.status;
 
-                    if (status == 0) {
+                    if (status === SUCESSO_AO_CADASTRAR_USUARIO) {
 
 
                         $('#modal-response-insertion').modal('show');
@@ -308,29 +296,38 @@
                             "<td>" + response.email + "</td>" +
                             "<td>" + response.nivel + "</td>" +
                             "<td class='d-flex justify-content-center'>" +
-                            "<a href='usuario.php?idUsuarioEditar='" + response.id + "'>" +
+                            "<a href='controller/usuario/excluirUsuario.php?idUsuarioExcluir='" + response.id + "'>" +
                             "<i class='fas fa-edit'></i>" + "</a>" +
                             "<a href='usuario.php?idUsuarioRemover='" + "'>" +
                             "<i class='fas fa-trash-alt' data-toggle='modal' data-target='#excluirModal'></i>" +
                             "</a>" +
-                            '</td>' + "</tr>");
+                            '</td>' + "</tr>" );
+
+                        console.log(response);
 
 
-
-
-                    } else if (status == 1) {
+                    } else {
 
                         $('#modal-response-insertion').modal('show');
 
                         $('#modal-body-response-insertion').empty();
-                        $('#modal-body-response-insertion').append("<p>" + 'Email já cadastrado!' + "</p>");
+                        $('#modal-body-response-insertion').append("<p>" + 'Erro ao cadastrar o usuário' + "</p>");
                         $('#modal-title').empty();
                         $('#modal-title').append("Erro");
+
+
+                        console.log(response);
                     }
 
 
 
+                },
+                error: function(request) {
+
+
+                    console.log(request.responseText);
                 }
+
 
             });
         });
@@ -376,7 +373,7 @@
                             "<td class='d-flex justify-content-center'>" +
                             "<a href='usuario.php?idUsuarioEditar='" + value.idUsuario + "'>" +
                             "<i class='fas fa-edit'></i>" + "</a>" +
-                            "<a href='usuario.php?idUsuarioRemover='" + value.idUsuario + "'>" +
+                            "<a href='controller/usuario/excluirUsuario.php?idUsuarioExcluir='" + value.idUsuario + "'>" +
                             "<i class='fas fa-trash-alt' data-toggle='modal' data-target='#excluirModal'></i>" +
                             "</a>" +
                             '</td>' + "</tr>");
@@ -401,7 +398,7 @@
 
         $(document).on("submit", "#form-edit-user", function(e) {
 
-            console.log("Chamou o evento submit");
+
 
             e.preventDefault();
 
@@ -422,8 +419,8 @@
                     "txtEmail": $("#txtEmail").val(),
                     "cboNivelAcesso": $("#cboNivelAcesso").val(),
                     "txtSenha": $("#txtSenha").val(),
-                    "txtConfirmarSenha": $("#txtConfirmarSennha").val()
-
+                    "txtConfirmarSenha": $("#txtConfirmarSenha").val(),
+                    "idUsuario": $('#hdIdUsuario').val()
 
                 },
                 success: function(response) {
@@ -432,31 +429,27 @@
 
 
                         alert("Usuário editado com sucesso");
-                        document.location.reload(true);
+                        window.location.href = "usuario.php";
 
-                    }
-                    else if (response.status === DADOS_INVALIDOS){
-                        
+                    } else if (response.status === DADOS_INVALIDOS) {
+
                         alert("Dados inválidos, por favor digite novamente");
-                    }
-                    else {
+                    } else {
 
                         alert("Erro ao editar o usuário :(");
+                        console.log(response);
                     }
 
                 },
-                error: function() {
+                error: function(request) {
 
                     alert("Erro ao editar o usuário :(");
+                    console.log(request.responseText);
                 }
 
 
             });
         });
-
-
-
-        
     </script>
 
 </body>

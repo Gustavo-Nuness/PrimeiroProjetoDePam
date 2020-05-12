@@ -66,6 +66,13 @@
             return $userDao->verifyUserExistenceByEmailAndPassword($email, $password);
 
         }
+
+        public function remover($id){
+
+            $userDao = new UsuarioDAO();
+            return $userDao->remover($id);
+
+        } 
     }
 ?>
 

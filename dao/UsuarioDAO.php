@@ -95,7 +95,7 @@ class UsuarioDAO
 
         $conn = Connection::getConnection();
 
-        $sql = "SELECT emailUsuario FROM tbusuario WHERE emailUsuario = ?";
+        $sql = "SELECT emailUsuario FROM tbusuario WHERE emailUsuario LIKE ?";
 
         $pstm = $conn->prepare($sql);
         $pstm->bindValue(1, $email);
@@ -224,6 +224,21 @@ class UsuarioDAO
             return null;
 
         }
+
+    }
+
+    public function remover($id) {
+
+        $conn = Connection::getConnection();
+
+        $sql = "DELETE FROM tbusuario WHERE idUsuario = ?";
+
+        $pstm = $conn->prepare($sql);
+
+        $pstm->bindValue(1, $id);
+
+        return $pstm->execute();
+
 
     }
 }

@@ -68,11 +68,10 @@ if (isset($_POST["txtSenha"]) && !empty($_POST['txtSenha'])) {
     array_push($vetErros, $erro);
 }
 
-
 if (
     isset($_POST["txtConfirmarSenha"]) &&
-    !empty($_POST['txtConfirmarSenha']) &&
-    $usuario->getSenhaUsuario() ===  $_POST['txtConfirmarSenha']
+    !empty($_POST["txtConfirmarSenha"]) &&
+    $usuario->getSenhaUsuario() == $_POST["txtConfirmarSenha"]
 ) {
 
     $usuario->setSenhaUsuario($_POST["txtConfirmarSenha"]);

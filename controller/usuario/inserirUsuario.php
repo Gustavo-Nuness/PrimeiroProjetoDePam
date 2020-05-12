@@ -4,14 +4,14 @@ require_once(__DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".."
 
 $usuario = new Usuario();
 
-define("SUCESSO", 0);
-define("EMAIL_VAZIO", 1);
-define("NOME_VAZIO", 2);
-define("NIVEL_ACESSO_VAZIO", 3);
-define("SENHA_VAZIA", 4);
-define("SENHA_DIFERENTE", 5);
-define("CONFIRMAR_SENHA_VAZIO", 6);
-define("EMAIL_REPETIDO", 7);
+define("SUCESSO", 1);
+define("EMAIL_INVALIDO", 2);
+define("NOME_INVALIDO", 3);
+define("NIVEL_ACESSO_INVALIDO", 4);
+define("SENHA_INVALIDA", 5);
+define("SENHA_DIFERENTE", 6);
+define("CONFIRMAR_SENHA_INVALIDO", 7);
+define("EMAIL_REPETIDO", 8);
 
 $usuario = new Usuario();
 
@@ -19,7 +19,7 @@ if (isset($_POST["txtNome"]) && !empty($_POST["txtNome"])) {
     $usuario->setNomeUsuario($_POST["txtNome"]);
 } else {
 
-    $response = array("status" => NOME_VAZIO);
+    $response = array("status" => NOME_INVALIDO);
     echo json_encode($response);
 }
 
@@ -28,7 +28,7 @@ if (isset($_POST["txtEmail"]) && !empty($_POST["txtEmail"])) {
     $usuario->setEmailUsuario($_POST["txtEmail"]);
 } else {
 
-    $response = array("status" => EMAIL_VAZIO);
+    $response = array("status" => EMAIL_INVALIDO);
     echo json_encode($response);
 }
 
@@ -47,7 +47,7 @@ if (isset($_POST["cboNivelAcesso"]) && !empty($_POST["cboNivelAcesso"])) {
     $usuario->setNivelAcessoUsuario($nivelAcesso);
 } else {
 
-    $response = array("status" => NIVEL_ACESSO_VAZIO);
+    $response = array("status" => NIVEL_ACESSO_INVALIDO);
     echo json_encode($response);
 }
 
@@ -56,7 +56,7 @@ if (isset($_POST["txtSenha"]) && !empty($_POST["txtSenha"])) {
     $usuario->setSenhaUsuario($_POST["txtSenha"]);
 } else {
 
-    $response = array("status" => SENHA_VAZIA);
+    $response = array("status" => SENHA_INVALIDA);
     echo json_encode($response);
 }
 
@@ -66,7 +66,7 @@ if (isset($_POST["txtConfirmarSenha"]) && !empty($_POST["txtConfirmarSenha"])) {
 
         $userController = new UsuarioController();
 
-        if ($userController->isValidEmail($usuario->getEmailUsuario())) {
+        if ($userController->isValidEmail( $usuario->getEmailUsuario() )) {
 
             $userController->cadastrar($usuario);
 
@@ -93,7 +93,7 @@ if (isset($_POST["txtConfirmarSenha"]) && !empty($_POST["txtConfirmarSenha"])) {
     }
 } else {
 
-    $response = array("status" => CONFIRMAR_SENHA_VAZIO);
+    $response = array("status" => CONFIRMAR_SENHA_INVALIDO);
     echo json_encode($response);
 }
 
